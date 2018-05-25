@@ -1,5 +1,3 @@
-
-
 public class Arista {
 	Nodo origen;
 	Nodo destino;

@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 
 public class GrafoDirigido {
@@ -9,7 +7,7 @@ public class GrafoDirigido {
 	ArrayList<Nodo> padre;
 
 	public GrafoDirigido() {
-		listaNodos = new ArrayList<Nodo>();
+		listaNodos = new ArrayList<Nodo>(); 
 		estado = new ArrayList<String>();
 		padre = new ArrayList<Nodo>();
 	} 
@@ -25,7 +23,8 @@ public class GrafoDirigido {
 
 	/**
 	 * @param n
-	 * @return Obtiene el nodo que se pasa por parametro en caso de encontrarlo
+	 * @return Busca en el grafo el nodo que se pasa por parametro en 
+	 * caso de encontrarlo lo devuelve, sino lo encuentra devuelve null
 	 */
 	public Nodo obtenerNodo(String n) {
 		Nodo aux = null;
@@ -69,15 +68,16 @@ public class GrafoDirigido {
 	 * @param nodoOrigen
 	 * @param nodoDestino
 	 * @return
-	 * Devuelve verdadero o falso dependiendo 
-	 * si hay arista que conecte los nodos 
+	 * Devuelve la arista entre ambos nodos dependiendo 
+	 * si existe una que los conecte 
 	 */
 	public Arista existeArista(Nodo nodoOrigen, Nodo nodoDestino) {
-		Arista aux=null;
+		Arista aux = null;
 		int i = 0; 
+		
 		while (i < listaNodos.size()) {
 			if (nodoOrigen.equals(listaNodos.get(i))) { 
-				return nodoOrigen.existeArista(nodoDestino);
+				return nodoOrigen.existeAristaHaciaNodoDestino(nodoDestino);
 			} 
 			i++;
 		}
@@ -214,16 +214,17 @@ public class GrafoDirigido {
 	}
 
 	private void printNodo(Nodo nodo) {
-		// TODO Auto-generated method stub	 
 		/*Traigo todas las aristas del vertice*/
 		ArrayList <Arista> listAux = nodo.getAristasAdyacentes();
 		
 		for (int j = 0; j < listAux.size(); j++) {
-
-				System.out.println(nodo.getValor()+"->"+listAux.get(j).getNodoDestino().getValor()+"[label="+'"'+listAux.get(j).getPeso()+'"'+",weight ="+'"'+listAux.get(j).getPeso()+'"'+"];");
+				System.out.println(nodo.getValor() + "->" + listAux.get(j).getNodoDestino().getValor() +
+						"[label=" + '"' + listAux.get(j).getPeso() + '"' + ",weight =" + '"' +
+						listAux.get(j).getPeso() + '"' + "];");
 			}
 	}
-	public void ordenarAristasNodo() {
+	
+	public void ordenarAristasNodo() { 
 		for (int i = 0; i < listaNodos.size(); i++) {
 			listaNodos.get(i).ordenarAristasXpeso();
 		}

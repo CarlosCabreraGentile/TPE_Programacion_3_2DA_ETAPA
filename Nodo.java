@@ -12,6 +12,9 @@ public class Nodo {
 		this.valor = valor;
 		aristasAdyacentes = new ArrayList<Arista>();
 	}
+	public void resetAristas() {
+		aristasAdyacentes.removeAll(this.aristasAdyacentes);
+	}
 
 	public int getDistancia() {
 		return distancia;

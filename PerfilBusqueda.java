@@ -7,13 +7,49 @@ import java.util.ArrayList;
 public class PerfilBusqueda {
 
 	public static void main(String[] args) {
-		GrafoDirigido profile;
+		GrafoDirigido profile=new GrafoDirigido();
+		GrafoDirigido prueba;
+//		Nodo v1 = new Nodo ("1");
+//		Nodo v2 = new Nodo ("2");
+//		Nodo v3 = new Nodo ("3");
+//		Nodo v4 = new Nodo ("4");
+//		Nodo v5 = new Nodo ("5");
+//		Nodo v6 = new Nodo ("6");
+//		Nodo v7 = new Nodo ("7");
+//		Nodo v8 = new Nodo ("8");
+//		Nodo v9 = new Nodo ("9");
+//		profile.agregarNodo(v1);
+//		profile.agregarNodo(v2);
+//		profile.agregarNodo(v3);
+//		profile.agregarNodo(v4);
+//		profile.agregarNodo(v5);
+//		profile.agregarNodo(v6);
+//		profile.agregarNodo(v7);
+//		profile.agregarNodo(v8);
+//		profile.agregarNodo(v9);
+//		profile.agregarArista(v1, v2);
+//		profile.agregarArista(v2, v3);
+//		profile.agregarArista(v3, v5);
+//		profile.agregarArista(v3, v4);
+//		profile.agregarArista(v4, v8);
+//		profile.agregarArista(v8, v1);
+//		profile.agregarArista(v8, v9);
+//		profile.agregarArista(v9, v4);
+//		profile.agregarArista(v4, v6);
+//		profile.agregarArista(v5, v9);
+//		profile.printGrafo();
+//		System.out.println("aca termina");
+//		prueba=profile.DFS_Ciclo("1");
+//		prueba.printGrafo();
 		profile = input(obtenerNumero());
 		printPeso(profile.obtenerNodo("viajes"));
 		profile.ordenarAristasNodo();
 		printPeso(profile.obtenerNodo("viajes"));
+		profile.printGrafo();
 		System.out.println(profile.listaNodos.size());
 		System.out.println(obtenerLosNMasBuscados(5,"viajes",profile));
+		prueba=profile.DFS_Ciclo("viajes");
+		prueba.printGrafo();
 	}
 	
 	public static void printPeso(Nodo a) {
@@ -52,7 +88,7 @@ public class PerfilBusqueda {
 	}
 	
 	public static GrafoDirigido input(int numero) {
-		String csvFile = "C:\\Tudai\\2do año\\Programacion 3\\2018\\tpe\\dataset2daEntrega\\dataset" + numero + ".csv";
+		String csvFile = "C:\\Users\\maxi\\Desktop\\TPE_Programacion_3_2DA_ETAPA-master\\dataset" + numero + ".csv";
 		String line = "";
 		String cvsSplitBy = ",";
 		GrafoDirigido profileSearch = new GrafoDirigido();

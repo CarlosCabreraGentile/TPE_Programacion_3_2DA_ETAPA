@@ -144,6 +144,7 @@ public class GrafoDirigido {
 	/**
 	 * @param nodo
 	 * @param retorno
+	 * Este metodo hace de soporte dfsGenBuscadosAfterXGen en la recursion 
 	 */
 	private void dfsGenBuscadosAfterXGenVisitar(Nodo nodo, ArrayList<Nodo> retorno) {
 		if (nodo.getEstado().equals("blanco")) {
@@ -161,11 +162,12 @@ public class GrafoDirigido {
 		nodo.setEstado("negro");
 	}
 
-	private void remove(Nodo v) {
-		// TODO Auto-generated method stub
-		listaNodos.remove(v);
-	}
-
+	/**
+	 * @param genero
+	 * @return
+	 * Este Metodo implementa la estructura del algoritmo
+	 * DFS para poder encontrar los ciclos
+	 */
 	public ArrayList<Nodo> DFS_Ciclo(String genero) {
 		ArrayList<Arista> aristas = new ArrayList<Arista>();
 		for (int i = 0; i < listaNodos.size(); i++) {
@@ -193,42 +195,12 @@ public class GrafoDirigido {
 	
 		return auxRetorno;
 	}
-
-	private GrafoDirigido armarGrafoConCiclos(ArrayList<Nodo> auxRetorno, ArrayList<Arista> aristas) {
-		GrafoDirigido grafoRetorno = new GrafoDirigido();
-		for (int i = 0; i < auxRetorno.size(); i++) {
-			
-		}
-		return null;
-	}
-
-	private void controlFaltanCiclos(Nodo aux, ArrayList<Nodo> auxRetorno, ArrayList<Arista> aristas) {
-		ArrayList<Arista> soyDestino = soyDest(aux, aristas);
-		int max = soyDestino.size();
-		for (int i = 0; i < max; i++) {
-			Nodo auxNodoOrigen = soyDestino.get(i).getNodoOrigen();
-			if (!auxRetorno.contains(auxNodoOrigen)) {
-				controlFaltanCiclos(auxNodoOrigen, auxRetorno, aristas);
-				if (auxRetorno.contains(auxNodoOrigen) && !(auxRetorno.contains(aux))) {
-					auxRetorno.add(aux);
-				}
-			} else if (auxRetorno.contains(auxNodoOrigen) && !(auxRetorno.contains(aux))) {
-				auxRetorno.add(aux);
-			}
-		}
-
-	}
-
-	private ArrayList<Arista> soyDest(Nodo destino, ArrayList<Arista> aristas) {
-		ArrayList<Arista> soyDestino = new ArrayList<Arista>();
-		for (int j = 0; j < aristas.size(); j++) {
-			if (aristas.get(j).getNodoDestino().equals(destino)) {
-				soyDestino.add(aristas.get(j));
-			}
-		}
-		return soyDestino;
-	}
-
+	/**
+	 * @param v
+	 * @param auxRetorno
+	 * @param temporal
+	 * Este metodo hace de soporte DFS_Ciclo en la recursion
+	 */
 	private void hayCiclo(Nodo v, ArrayList<Nodo> auxRetorno, Nodo temporal) {
 		v.setEstado("amarillo");
 		ArrayList<Arista> auxAdya = v.getAristasAdyacentes();
@@ -248,4 +220,45 @@ public class GrafoDirigido {
 		}
 		v.setEstado("negro");
 	}
+
+	/**
+	 * @param aux
+	 * @param auxRetorno
+	 * @param aristas
+	 * En este metodo solucionamos los ciclos que no se agregaron
+	 */
+	private void controlFaltanCiclos(Nodo aux, ArrayList<Nodo> auxRetorno, ArrayList<Arista> aristas) {
+		ArrayList<Arista> soyDestino = soyDest(aux, aristas);
+		int max = soyDestino.size();
+		for (int i = 0; i < max; i++) {
+			Nodo auxNodoOrigen = soyDestino.get(i).getNodoOrigen();
+			if (!auxRetorno.contains(auxNodoOrigen)) {
+				controlFaltanCiclos(auxNodoOrigen, auxRetorno, aristas);
+				if (auxRetorno.contains(auxNodoOrigen) && !(auxRetorno.contains(aux))) {
+					auxRetorno.add(aux);
+				}
+			} else if (auxRetorno.contains(auxNodoOrigen) && !(auxRetorno.contains(aux))) {
+				auxRetorno.add(aux);
+			}
+		}
+
+	}
+
+	/**
+	 * @param destino
+	 * @param aristas
+	 * @return
+	 * Metodo que nos proporciona las arista que apuntan a un nodo
+	 */
+	private ArrayList<Arista> soyDest(Nodo destino, ArrayList<Arista> aristas) {
+		ArrayList<Arista> soyDestino = new ArrayList<Arista>();
+		for (int j = 0; j < aristas.size(); j++) {
+			if (aristas.get(j).getNodoDestino().equals(destino)) {
+				soyDestino.add(aristas.get(j));
+			}
+		}
+		return soyDestino;
+	}
+
+
 }

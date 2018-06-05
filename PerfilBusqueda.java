@@ -8,7 +8,7 @@ public class PerfilBusqueda {
 
 	public static void main(String[] args) {
 		GrafoDirigido profile=new GrafoDirigido();
-		ArrayList<Nodo> prueba;
+//		ArrayList<Nodo> prueba;
 //		Nodo v1 = new Nodo ("1");
 //		Nodo v2 = new Nodo ("2");
 //		Nodo v3 = new Nodo ("3");
@@ -57,8 +57,8 @@ public class PerfilBusqueda {
 		profile.ordenarAristasNodo();
 		profile.printGrafo();
 		printArray(obtenerLosNMasBuscados(5,"viajes",profile));
-		System.out.print(profile.DFS_Ciclo("viajes").size());
-		System.out.print(profile.dfsGenBuscadosAfterXGen("viajes").size());
+		printArray(profile.DFS_Ciclo("viajes"));
+		printArray(profile.dfsGenBuscadosAfterXGen("viajes"));
 	}
 	public static void printArray(ArrayList<Nodo>aux) {
 		for (int i = 0; i < aux.size(); i++) {

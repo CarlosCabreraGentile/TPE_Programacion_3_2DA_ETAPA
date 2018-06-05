@@ -6,7 +6,6 @@ public class Nodo {
 	ArrayList<Arista> aristasAdyacentes; 
 	Nodo padre;
 	String estado;
-	int distancia;
 	
 	public Nodo(String valor) {
 		this.valor = valor;
@@ -15,15 +14,6 @@ public class Nodo {
 	public void resetAristas() {
 		aristasAdyacentes.removeAll(this.aristasAdyacentes);
 	}
-
-	public int getDistancia() {
-		return distancia;
-	}
-	
-	public void setDistancia(int distancia) {
-		this.distancia = distancia;
-	}
-	
 	public Nodo getPadre() {
 		return padre;
 	}

@@ -211,10 +211,10 @@ public class GrafoDirigido {
 				if ((auxRetorno.contains(auxDestino)) && !(auxRetorno.contains(v))) {
 					auxRetorno.add(v);
 				}
-			} else if ((auxDestino.getEstado().equals("negro")) && ((auxDestino.equals(temporal)))) {
+			} else if (((auxDestino.equals(temporal)))&& !(auxRetorno.contains(v))) {
 				auxRetorno.add(v);
-			} else if (((auxDestino.getEstado().equals("negro")) || (auxDestino.getEstado().equals("amarillo")))
-						&& (auxRetorno.contains(auxDestino)) && !(auxRetorno.contains(v))) {
+			} else if (((auxDestino.getEstado().equals("negro")) || (auxDestino.getEstado().equals("amarillo")))&& (auxRetorno.contains(auxDestino)) && !(auxRetorno.contains(v))) {
+						
 				auxRetorno.add(v);
 			}
 		}
